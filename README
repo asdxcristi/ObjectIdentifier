@@ -1,0 +1,45 @@
+Bucur Ionut-Cristian,313CA
+
+
+Task1:#rgbHistogram
+	-am abordat acest task spargand matricea rgb aferenta imaginii date ca parametru in 3 matrici(r,g,b)
+	-folosind vectorizari si un for am trecut prin toate invervalele calculcand cate elemente din r g sau b se incadreaza in intervalele respective si adaugand numarul lor la rezultatul final
+
+
+Task2:#RGB2HSV
+	-am copiat algoritmul de transformare din cerinta,dupa care l-am optimizat folosind vectorizari
+	-de asemenea l-am extins,acesta primind ca paramentru cele 3 matrice(r,g,b)in loc de cate un pixel
+	-am eliminat if-urile,iar cele care implicau ca delta sa fie != 0 le-am rezolvat schimbat toate elementele din delta egale cu 0 cu inf astfel calculul lui H nu va fi afectat de aceastea(dau 0)
+#hsvHistogram
+
+      #hsvHistogram
+	-am abordat acest task spargand matricea rgb aferenta imaginii date ca parametru in 3 matrici(r,g,b)
+	-am transformat cele 3 matrici(r,g,b) in H S V folosind functia RGB2HSV de mai sus
+	-folosind vectorizari si un for am trecut prin toate invervalele calculcand cate elemente din h s sau v se incadreaza in intervalele respective si adaugand numarul lor la rezultatul final
+
+Task3:#preprocess
+	-am calculat si scos imaginile atat din folderul cats cat si din not_cats
+	-am tratat cazul pt RGB si HSV in acelasi mod,exceptie facand functia pentru histograma care pt prima a fost rgbHistogram,iar pt a doua hsvHistogram
+	-am trecut prin toate imaginile din ambele foldere si completat matricea X cu rezultatul returnat de functia de histograma si am completat vectorul t cu 1 respectiv -1 conform cerintei
+
+      #learn
+	-am adaugat matricei X o coloana de 1 la final
+	-am calculat solutia sistemului X*w=t
+
+Task4:#evaluate
+	-am tratat separat cazurile de RGB si HSV diferente facand parametrul hist_type al functiei preprocess si implicit ce returna aceasta
+	-am calculat numarul total de imagini
+	-am adaugat coloana de 1 la finalul matricei X
+	-am calculat y-ul conform formulei
+	-am verificat daca semnul lui y coincide cu cel al etichetei imaginii respective,contorizand astfel numarul de previziuni corecte
+	-am calculat procentul de previziuni corecte in functie de numarul total de imagini si de numarul de previziuni corecte
+
+Observatii:clasificarea RGB vs clasificarea HSV:
+	-in mediul meu(abordarea mea a taskurilor+imaginile din checker) clasificarea HSV pare sa aiba o acuratete mai mare ca cea RGB:
+	RGB .................................................. Correct
+	Accuracy Match ......................................  85.71 %
+	HSV .................................................. Correct
+	Accuracy Match ......................................  88.89 %
+
+*am folosit functia din arhiva checkerului getImgNames cand am avut nevoie
+
